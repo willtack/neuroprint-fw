@@ -65,6 +65,7 @@ def write_command():
 
 
 def main():
+    os.system("bash -x /flywheel/v0/docker-env.sh")
     command_ok = write_command()
     if not command_ok:
         logger.warning("Critical error while trying to write run command.")
