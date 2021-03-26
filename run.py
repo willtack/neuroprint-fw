@@ -31,7 +31,7 @@ with flywheel.GearContext() as context:
     # Get subject and session names
     session_label = session_container.label
     subject_label = subject_container.label
-    prefix = "{}_{}_".format(subject_label, session_label)
+    prefix = "{}_{}".format(subject_label, session_label)
 
     # Inputs
     ct_image = context.get_input('cortical_thickness_image')
