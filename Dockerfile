@@ -1,4 +1,4 @@
-FROM willtack/wscore-ct-heatmap:0.0.1
+FROM willtack/wscore-ct-heatmap:0.0.2
 
 MAINTAINER Will Tackett <William.Tackett@pennmedicine.upenn.edu>
 
@@ -12,21 +12,21 @@ RUN apt-get update && apt-get -y install \
     build-essential
 #RUN rm -f /usr/bin/python && ln -s /usr/bin/python /usr/bin/python3
 
-# Install conda environment
-RUN curl -sSLO https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh && \
-    bash Miniconda3-4.5.11-Linux-x86_64.sh -b -p /usr/local/miniconda && \
-    rm Miniconda3-4.5.11-Linux-x86_64.sh
+## Install conda environment
+#RUN curl -sSLO https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh && \
+#    bash Miniconda3-4.5.11-Linux-x86_64.sh -b -p /usr/local/miniconda && \
+#    rm Miniconda3-4.5.11-Linux-x86_64.sh
+#
+#ENV PATH=/usr/local/miniconda/bin:$PATH \
+#    LANG=C.UTF-8 \
+#    LC_ALL=C.UTF-8 \
+#    PYTHONNOUSERSITE=1
 
-ENV PATH=/usr/local/miniconda/bin:$PATH \
-    LANG=C.UTF-8 \
-    LC_ALL=C.UTF-8 \
-    PYTHONNOUSERSITE=1
-
-RUN conda install -y python=3.7.1 \
-    chmod -R a+rX /usr/local/miniconda; sync && \
-    chmod +x /usr/local/miniconda/bin/*; sync && \
-    conda build purge-all; sync && \
-    conda clean -tipsy && sync
+#RUN conda install -y python=3.7.1 \
+#    chmod -R a+rX /usr/local/miniconda; sync && \
+#    chmod +x /usr/local/miniconda/bin/*; sync && \
+#    conda build purge-all; sync && \
+#    conda clean -tipsy && sync
 
 # Install python packages
 RUN pip install flywheel-sdk==12.4.0 \
