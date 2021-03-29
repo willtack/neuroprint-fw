@@ -31,7 +31,7 @@ with flywheel.GearContext() as context:
     # Get subject and session names
     session_label = session_container.label
     subject_label = subject_container.label
-    prefix = "{}_{}".format(subject_label, session_label)
+    prefix = "sub-{}_ses-{}".format(subject_label, session_label)
 
     # Inputs
     ct_image = context.get_input('cortical_thickness_image')
@@ -72,6 +72,8 @@ def main():
         return 1
     os.system("chmod +x {0}".format(run_script))
     os.system(run_script)
+    # zip up html stuff
+    os.system("zip -r --junk-paths {0}/{1}_report.html.zip {0}/*.html".format(gear_output_dir, prefix))
     return 0
 
 
