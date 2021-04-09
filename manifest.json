@@ -2,7 +2,7 @@
 	"name": "wscore-ct-heatmap",
 	"label": "wscore-ct-heatmap: generate heatmaps of cortical thinning relative to normative data.",
 	"description": "Calculates cortical thickness w-scores with age and sex as covariates, and compiles these data into an html report.",
-	"version": "0.0.3_0.0.2",
+	"version": "0.0.7_0.0.5",
 	"inputs": {
 		"api_key": {
 			"base": "api-key"
@@ -10,12 +10,17 @@
 		"cortical_thickness_image": {
 			"base": "file",
 			"description": "Patient's cortical thickness image in subject space.",
-			"optional": false
+			"optional": true
 		},
 		"label_image": {
 			"base": "file",
 			"description": "Schaefer atlas 200x17 label image in subject space.",
-			"optional": false
+			"optional": true
+		},
+		"antsct_output": {
+			"base": "file",
+			"description": "Full path to ants-ct gear output directory zip.",
+			"optional": true
 		}
 	},
 	"config": {
@@ -23,6 +28,11 @@
 			"description": "the patient's age in years",
 			"default": 50,
 			"type": "number"
+		},
+		"wthresholds": {
+			"default": "0.5 1 1.25",
+			"description": "space-separated list of w-score thresholds",
+			"type": "string"
 		}
 	},
 	"command": "/usr/local/bin/python /flywheel/v0/run.py",
@@ -43,7 +53,7 @@
 	"custom": {
 		"gear-builder": {
 			"category": "analysis",
-			"image": "willtack/wscore-fw:0.0.3_0.0.2"
+				"image": "willtack/wscore-fw:0.0.7_0.0.5"
 		},
 		"flywheel": {
 			"suite": "BrainScienceCenter"
