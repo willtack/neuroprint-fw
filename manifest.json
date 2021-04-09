@@ -46,7 +46,7 @@
         "PYTHON_VERSION": "3.7.1",
         "PATH": "/usr/share/fsl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
        },
-	"author": "Will Tackett, Sarah Burke",
+	"author": "Will Tackett, Sarah Burke, Christopher Olm, Jeff Phillips",
 	"maintainer": "Will Tackett",
 	"license": "BSD-3-Clause",
 	"source": "https://github.com/willtack/wscore-fw",
