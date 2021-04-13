@@ -64,16 +64,16 @@ with flywheel.GearContext() as context:
     # Configs
     age = config.get('patient_age')
     wthresholds = config.get('wthresholds')
-
+    
     thr_list = wthresholds.split(' ')
     print(thr_list)
     if len(thr_list) > 3:
-        thr_list=thr_list[0:2] # just pick three if user supplied more than three
+        thr_list = thr_list[0:2]  # just pick three if user supplied more than three
     elif 1 <= len(thr_list) < 3:
-        thr_list.append(str(thr_list[-1]+1)) # append the last item plus one
+        thr_list.append(str(thr_list[-1]+1))  # append the last item plus one
     elif len(thr_list) != 3:
         print("Using default thresholds.")
-        thr_list = ['0.5', '1', '1.25']
+        thr_list = ['0.0', '0.5', '1.0']
     wthresholds = ' '.join(thr_list)
 
     print("PATHS")
@@ -85,17 +85,16 @@ def write_command():
 
     """Write out command script."""
     with flywheel.GearContext() as context:
-        cmd = ['/usr/local/bin/python',
-            '/opt/scripts/run.py',
-            '--label_index_file {}'.format('/opt/labelset/Schaefer2018_200Parcels_17Networks_order.csv'),
-            '--label_image_file {}'.format(label_image_path),
-            '--ct_image_file {}'.format(ct_image_path),
-            '--t1_image_file {}'.format(t1_image_path),
-            '--patient_age {}'.format(str(age)),
-            '--thresholds {}'.format('0.5 1 1.25'),  # for testing, just hard-code
-            # '--thresholds {}'.format(wthresholds),
-            '--prefix {}'.format(prefix),
-            '--output_dir {}'.format(gear_output_dir)
+        cmd = ["/usr/local/bin/python",
+            "/opt/scripts/run.py",
+            "--label_index_file {}".format("/opt/labelset/Schaefer2018_200Parcels_17Networks_order.csv"),
+            "--label_image_file {}".format(label_image_path),
+            "--ct_image_file {}".format(ct_image_path),
+            "--t1_image_file {}".format(t1_image_path),
+            "--patient_age {}".format(str(age)),
+            "--thresholds '{}'".format(wthresholds),
+            "--prefix {}".format(prefix),
+            "--output_dir {}".format(gear_output_dir)
                ]
     logger.info(' '.join(cmd))
     # write command joined by spaces
@@ -116,11 +115,21 @@ def main():
     # generate_Report.py
     os.system("python generate_report.py {} {}".format(prefix, gear_output_dir))
 
-    # zip up html stuff
-    os.system("zip -r --junk-paths {0}/{1}_report.html.zip {0}/*.html".format(gear_output_dir, prefix))
-    os.system("rm {}/*.html".format(gear_output_dir))
-    # transfer rendered stuff
-    os.system("cp /opt/rendering/*.png {}; cp /opt/rendering/*.scene {}".format(gear_output_dir))
+    # transfer rendered files to output directory
+    os.system("cp /flywheel/v0/*.png {}".format(gear_output_dir))
+
+    # zip up html-related files
+    html_dir = os.path.join(gear_output_dir, prefix+'_report')
+    os.makedirs(html_dir, exist_ok=True)
+    os.system("cp /flywheel/v0/output/*.html {0}; cp /flywheel/v0/output/*.png {0}".format(html_dir))
+    os.system("rm /flywheel/v0/output/*.html")
+    os.chdir(html_dir)  # cd to /flywheel/v0/output/{}_report.html
+    os.system("zip -r {0}/{1}_report.html.zip {2}".format(gear_output_dir, prefix, './*'))
+    os.system("rm -rf /flywheel/v0/output/*_report")
+    os.chdir('/flywheel/v0')
+    # remove wscores text file bc redundant with csv
+    os.system("rm /flywheel/v0/output/*.txt")
+
     return 0
 
 
