@@ -101,6 +101,7 @@
           a1=new Image; a1.src="{{png_list[0]}}";
           a2=new Image; a2.src="{{png_list[1]}}";
           a3=new Image; a3.src="{{png_list[2]}}";
+          a4=new Image; a4.src="{{png_list[3]}}";
           function im(image) {
             document.getElementById(image[0]).src = eval(image + ".src")
           }
@@ -118,7 +119,7 @@
 
         <!-- Body -->
         <main style="background-color:black">
-          <p style="font-size:1.7vh;color:white;float:right;margin-right:15%">Threshold toggle (z-score): </p><br>
+          <p style="font-size:1.7vh;color:white;float:right;margin-right:15%">Threshold toggle (w-score): </p><br>
           <div class="switch-field"
             <form autocomplete="off" style="float:right;margin-right:15%">
               <input type="radio" name="1" id="1" onclick="im('a1');" checked>
@@ -127,6 +128,8 @@
               <label for="2">{{thr[1]}}</label>
               <input type="radio" name="1" id="3" onclick="im('a3');">
               <label for="3">{{thr[2]}}</label>
+              <input type="radio" name="1" id="4" onclick="im('a4');">
+              <label for="4">{{thr[3]}}</label>
             </form>
           </div>
 
@@ -137,14 +140,6 @@
                           <img id="a" src="{{png_list[0]}}" style="max-width:100%;height:auto;">
                   </div>
                   <p1 class="center">Fig. 1 - Surface Render</p1>
-                </section>
-
-                <!-- Info -->
-                <section class="pt2 pb3">
-                  <div class="resp-container">
-                      <iframe class="resp-iframe" src="{{volume_viewer}}"></iframe>
-                  </div>
-                  <p1 class="center">Fig. 2 - Volume Scroller</p1>
                 </section>
 
             </div>

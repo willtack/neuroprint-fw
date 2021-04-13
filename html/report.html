@@ -57,6 +57,7 @@ function preLoad() {
   a1 = new Image; a1.src = '{{png_list[0]}}'; a1.style="max-width:100%;height:auto";
   a2 = new Image; a2.src = '{{png_list[1]}}'; a2.style="max-width:100%;height:auto";
   a3 = new Image; a3.src = '{{png_list[2]}}'; a3.style="max-width:100%;height:auto";
+  a4 = new Image; a4.src = '{{png_list[3]}}'; a4.style="max-width:100%;height:auto";
 }
 function im(image) {
   document.getElementById(image[0]).src = eval(image + ".src")
@@ -75,6 +76,8 @@ function im(image) {
       <input type="radio" name="1" id="2" onClick="im('a2');">
       <label for="3">{{thr[2]}}</label>
       <input type="radio" name="1" id="3" onClick="im('a3');">
+      <label for="4">{{thr[2]}}</label>
+      <input type="radio" name="1" id="4" onClick="im('a4');">
     </form>
     <p id="fittext">Threshold toggle (w-score)</p>
   </div>
