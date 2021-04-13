@@ -1,4 +1,4 @@
-FROM willtack/wscore-ct-heatmap:0.0.5
+FROM willtack/wscore-ct-heatmap:0.1.0
 
 MAINTAINER Will Tackett <William.Tackett@pennmedicine.upenn.edu>
 
@@ -37,7 +37,8 @@ RUN pip install flywheel-sdk==12.4.0 \
 # Make directory for flywheel spec (v0)
 ENV FLYWHEEL /flywheel/v0
 RUN mkdir -p ${FLYWHEEL}
-#COPY run ${FLYWHEEL}/run
+COPY generate_report.py ${FLYWHEEL}/generate_report.py
+COPY html ${FLYWHEEL}/html
 COPY run.py ${FLYWHEEL}/run.py
 COPY manifest.json ${FLYWHEEL}/manifest.json
 RUN chmod a+rx ${FLYWHEEL}/*
