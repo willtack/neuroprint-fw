@@ -63,6 +63,7 @@ with flywheel.GearContext() as context:
 
     # Configs
     age = config.get('patient_age')
+    sex = config.get('patient_sex')
     wthresholds = config.get('wthresholds')
     
     thr_list = wthresholds.split(' ')
@@ -92,6 +93,7 @@ def write_command():
             "--ct_image_file {}".format(ct_image_path),
             "--t1_image_file {}".format(t1_image_path),
             "--patient_age {}".format(str(age)),
+            "--patient_sex {}".format(sex),
             "--thresholds '{}'".format(wthresholds),
             "--prefix {}".format(prefix),
             "--output_dir {}".format(gear_output_dir)

@@ -1,4 +1,4 @@
-FROM willtack/wscore-ct-heatmap:0.1.0
+FROM willtack/wscore-ct-heatmap:0.4.0
 
 MAINTAINER Will Tackett <William.Tackett@pennmedicine.upenn.edu>
 
