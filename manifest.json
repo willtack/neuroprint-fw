@@ -1,6 +1,6 @@
 {
 	"name": "wscore-ct-heatmap",
-	"label": "wscore-ct-heatmap: generate heatmaps of cortical thinning relative to normative data.",
+	"label": "Neuroprint: generate heatmaps of cortical thinning relative to normative data.",
 	"description": "Calculates cortical thickness w-scores with age and sex as covariates, and compiles these data into an html report.",
 	"version": "0.4.0_0.4.0",
 	"inputs": {

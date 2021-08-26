@@ -1,2 +1,2 @@
-# wscore-ct-heatmap
-Produces cortical thickness maps z-normalized to normative thickness data, and compiles these data into an html report with a threshold-adjustable surface rendering and a statistical map overlaid on an interactive volume slice viewer (powered by Papaya).
+# neuroprint-fw
+Flywheel gear for generating heatmaps of cortical thickness abnormalities in patients across the age spectrum. Gear wrapper for [this pipeline](https://github.com/willtack/wscore-ct-heatmap/tree/master).
